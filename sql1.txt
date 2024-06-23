@@ -27,7 +27,7 @@ SELECT Orders.OrderID, Customers.CustomerName FROM Orders JOIN Customers ON Orde
 that not every customer has an order, but be sure that you include those customers without orders
 in the results of the query.  Paste your SQL statement below.
 
-SELECT * FROM Customers LEFT JOIN Orders ON  Customers.CustomerID = Orders.CustomerID ORDER BY CustomerName;
+SELECT Customers.CustomerName, Orders.OrderID FROM Customers LEFT JOIN Orders ON  Customers.CustomerID = Orders.CustomerID ORDER BY CustomerName;
 
 6. Retrieve the list of customer names for customers that have no orders.  There are two ways to do this
 One is to use a subquery, as follows:

@@ -6,16 +6,16 @@ SELECT * FROM Products LIMIT 5;
 1. Use an SQL SELECT statement to retrieve the first 10 rows of the Customer table, ordered by CustomerName.
 Paste your SQL statement below:
 
-SELECT * FROM Сustomers ORDER BY СustomerName LIMIT 10;
+SELECT * FROM Customers ORDER BY CustomerName LIMIT 10;
 
 2. Use an SQL Select statement to retrieve the names and prices for all products that cost less than $20.
 Paste your SQL statement below:
 
-SELECT ProductName, Price FROM Products WHERE price < 20;
+SELECT ProductName, Price FROM Products WHERE Price < 20;
 
 3. Retrieve all employees whose last name starts with C.  Paste your SQL statement below:
 
-SELECT lastname FROM employees WHERE lastname LIKE "C%";
+SELECT * FROM Employees WHERE LastName LIKE "C%";
 
 4. Retrieve the order ID and customer name for all orders where the customer name starts with A.
 Here you will have to do a join of the Orders table and the Customers table.  Paste your SQL

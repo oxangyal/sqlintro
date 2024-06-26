@@ -3,19 +3,21 @@ to join the OrderDetails table with the product table.  For TotalCount, you will
 SUM(Quantity) AS TotalCount .  Order by product name.
 You will need to group by product ID.  Paste your SQL statement below.
 
-SELECT productName, SUM(Quantity) AS TotalCount 
-FROM products
-JOIN OrderDetails 
-on products.ProductID = OrderDetails.ProductID GROUP BY products.ProductID;
+SELECT ProductName, SUM(Quantity) AS TotalCount 
+FROM Products p
+JOIN OrderDetails od
+ON p.ProductID = od.ProductID 
+GROUP BY p.ProductID, ProductName
+ORDER BY ProductName;
 
 2. Retrieve the customer name and OrderDetailsID for all the OrderDetails for each customer,
 ordered by customer name. Paste your SQL statement below. You will have to join the Customers
 table with the Orders table, and the Orders table with the OrderDetails table, 
 because the Orders table is the one that ties the Customer table to the OrderDetails table.
  
- SELECT customerName, OrderDetailID  FROM customers 
- JOIN orders on customers.customerID = orders.customerID 
- JOIN OrderDetails on orders.OrderID = orderDetails.OrderID;
+ SELECT CustomerName, OrderDetailID  FROM customers c
+ JOIN orders o ON c.customerID = o.customerID 
+ JOIN OrderDetails ON o.OrderID = od.OrderID;
 
 3. Extend the previous query to join the Products table.  You are now joining the Customers, Orders,
 OrderDetails, and Products tables.  The result of your query should include the
@@ -24,11 +26,11 @@ may have ordered the same product in several different orders.  So the total qua
 SUM(Quantity) AS TotalQuantity and you must GROUP BY CustomerID, ProductID.  Paste your
 SQL statement below.
 
-SELECT customerName, productName, sum(quantity) AS TotalQuantity 
-FROM customers JOIN orders on customers.customerID = orders.customerID 
-JOIN OrderDetails on orders.OrderID = orderDetails.OrderID 
-JOIN products on products.productID = orderDetails.productID 
-GROUP BY customers.CustomerID, products.ProductID;
+SELECT CustomerName, ProductName, SUM(Quantity) AS TotalQuantity 
+FROM Customers JOIN Orders ON Customers.CustomerID = Orders.CustomerID 
+JOIN OrderDetails ON Orders.OrderID = OrderDetails.OrderID 
+JOIN Products ON Products.ProductID = OrderDetails.ProductID 
+GROUP BY Customers.CustomerID, Products.ProductID;
 
 
 4. Extend the previous query to give the total price as well as the customer name, product name, 
@@ -36,11 +38,11 @@ and total quantity.  Here you will have
 (SUM(Quantity) * Price) AS TotalPrice.  Paste your SQL statement below.
 
 
-SELECT customerName, productName, (round(SUM(Quantity)* Price)) AS TotalPrice, sum(quantity) AS TotalQuantity 
-FROM customers JOIN orders on customers.customerID = orders.customerID 
-JOIN  OrderDetails on orders.OrderID = orderDetails.OrderID 
-JOIN  products on products.productID = orderDetails.productID 
-GROUP BY customers.CustomerID, products.ProductID;
+SELECT CustomerName, ProductName, SUM(Quantity)* Price AS TotalPrice, SUM(quantity) AS TotalQuantity 
+FROM Customers JOIN Orders ON Customers.CustomerID = Orders.CustomerID 
+JOIN  OrderDetails ON orders.OrderID = OrderDetails.OrderID 
+JOIN  Products ON Products.ProductID = OrderDetails.ProductID 
+GROUP BY Customers.CustomerID, Products.ProductID;
 
 5. Add a new Order to the Orders table.  You will have to specify the ID of an existing customer
 to satisfy the foreign key constraint.  You will also have to specify the ID of an existing

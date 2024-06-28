@@ -17,8 +17,9 @@ because the Orders table is the one that ties the Customer table to the OrderDet
  
  SELECT CustomerName, OrderDetailID  FROM customers c
  JOIN orders o ON c.customerID = o.customerID 
- JOIN OrderDetails ON o.OrderID = od.OrderID;
-
+ JOIN OrderDetails ON o.OrderID = od.OrderID 
+ ORDER BY CustomerName;
+ 
 3. Extend the previous query to join the Products table.  You are now joining the Customers, Orders,
 OrderDetails, and Products tables.  The result of your query should include the
 customer name, the product name, and the total quantity of that product ordered.  Note that a customer
